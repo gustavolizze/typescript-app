@@ -1,0 +1,9 @@
+node_modules/
+.vscode/
+build/
+seed-dev-data.js
+.gitignore
+.prettierrc
+global.d.ts
+jest.config.ts
+tsconfig.json
