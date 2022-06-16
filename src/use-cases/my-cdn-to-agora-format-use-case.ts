@@ -1,6 +1,6 @@
 import { UseCase } from "common";
-import fetch from 'cross-fetch';
-import * as CSV from 'csv-string';
+import { MyCdn, Agora, AgoraFile } from 'models';
+import { IAgoraFileWriter, IRemoteMyCdnReader } from "services";
 
 
 export interface MyCdnToAgoraFormatUseCaseInput {
@@ -11,12 +11,24 @@ export interface MyCdnToAgoraFormatUseCaseInput {
 
 export class MyCdnToAgoraFormatUseCase implements UseCase<MyCdnToAgoraFormatUseCaseInput | undefined, Promise<any>> {
 
+    constructor(
+        private readonly remoteMyCdnReader: IRemoteMyCdnReader, 
+        private readonly agoraFileWriter: IAgoraFileWriter
+    ) 
+    {}
+
     async execute({ sourceUrl, targetPath }: MyCdnToAgoraFormatUseCaseInput) : Promise<any> {
-        const myCdn = await fetch(sourceUrl).then(res => res.text());
+        if (!sourceUrl) {
+            throw new Error('Informe a url do \"Minha CDN Arquivo\" ');
+        }
 
-        const myCdnCsv = CSV.parse(myCdn, { comma: "|", });
+        if (!targetPath) {
+            throw new Error('Informe o destino de escrita do \"Agora arquivo \"');
+        }
 
-        return Promise.resolve(myCdnCsv);
+        const myCdnFile = await this.remoteMyCdnReader.read(sourceUrl);
+
+        await this.agoraFileWriter.writeFromMyCdn(myCdnFile, targetPath);
     }
 
 }
