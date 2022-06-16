@@ -4,11 +4,14 @@
  "description": "",
  "main": "index.js",
  "scripts": {
-  "test": "jest --watch",
+  "prebuild": "rimraf build",
+  "build": "tsc",
+  "test": "jest --watchAll",
   "format:staged": "pretty-quick --staged",
   "lint:staged": "lint-staged",
   "commit": "npm run lint:staged && npm run format:staged",
-  "start": "NODE_PATH=./src ts-node-dev --respawn --transpile-only --pretty src/main"
+  "start": "NODE_PATH=./src ts-node-dev --respawn --transpile-only --pretty src/main",
+  "start:builded": "npm run build && NODE_PATH=./build node build/main"
  },
  "husky": {
   "hooks": {

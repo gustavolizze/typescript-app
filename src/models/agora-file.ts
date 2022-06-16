@@ -29,7 +29,7 @@ export class AgoraFile {
     }
 
     toString() {
-        let str = `#Version: ${this.version}\n#Date: ${this.date.toString()}\nFields: ${this.fields}`;
+        let str = `#Version: ${this.version}\n#Date: ${this.date.toString()}\n#Fields: ${this.fields}`;
 
         str = str.concat(...this.rows.map(row => `\n${row.toString()}`));
 

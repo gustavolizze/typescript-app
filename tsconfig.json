@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		/* Compiler Options */
 		"outDir": "./build",
-		"lib": ["es2020", "DOM"],
+		"lib": ["es2020", "DOM", "ES6"],
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"target": "es2020",

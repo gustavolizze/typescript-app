@@ -35,7 +35,7 @@ describe('AgoraFile Class unit', () => {
         const str = agoraFile.toString();
 
 
-        expect(str).toEqual(`#Version: ${agoraFile.version}\n#Date: ${agoraFile.date.toString()}\nFields: ${agoraFile.fields}\n${agora.title} ${agora.httpMethod} ${agora.statusCode} ${agora.uriPath} ${agora.timeTaken} ${agora.responseSize} ${agora.cacheStatus}`);
+        expect(str).toEqual(`#Version: ${agoraFile.version}\n#Date: ${agoraFile.date.toString()}\n#Fields: ${agoraFile.fields}\n${agora.title} ${agora.httpMethod} ${agora.statusCode} ${agora.uriPath} ${agora.timeTaken} ${agora.responseSize} ${agora.cacheStatus}`);
     });
 
 });
